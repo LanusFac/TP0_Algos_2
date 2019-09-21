@@ -1,0 +1,14 @@
+CPP = g++
+OFLAG = -o
+
+.SUFFIXES: .o .cpp
+
+.cpp .o:
+    $(CPP) -pedantic -wall $(CPPFLAGS) -c $<
+
+all: DFTexe
+
+DFTexe: DFTexe.o
+    $(CPP) -pedantic -wall $(CPPFLAGS) DFTexe main.o
+
+main.o: main.cpp
