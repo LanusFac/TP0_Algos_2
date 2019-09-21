@@ -1,0 +1,22 @@
+CXXARGS  = -I\dm\stlport\stlport
+CXXFLAGS = -cpp -I. $(CXXARGS)
+LDFLAGS  =
+CXX      = dmc
+
+test1.exe: test1.obj complejo.obj
+	$(CXX) $(LDFLAGS) -otest1.exe test1.o complejo.o
+
+test1.obj: test1.cc complejo.h
+	$(CXX) $(CXXFLAGS) -c test1.cc
+
+complejo.obj: complejo.cc complejo.h
+	$(CXX) $(CXXFLAGS) -c complejo.cc
+
+test: test1.exe
+	@echo testing: test1.exe
+	+test1.exe <test1.in >test1.t
+	@comp test1.ref test1.t
+	@echo test ok.
+
+clean:
+	del *.o *.t core test*.exe
