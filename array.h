@@ -12,6 +12,7 @@ class Array
 public:
 	Array();
 	Array(const Array<T> &);
+    Array(const int);
 	~Array();
 
 	int getSize();

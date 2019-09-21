@@ -1,5 +1,6 @@
 #include "array.h"
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -10,6 +11,15 @@ Array<T>::Array()
 {
 	ptr = new T[INIT_SIZE];
 	size = INIT_SIZE;
+    memset (ptr, 0, INIT_SIZE*sizeof(T));
+}
+
+template <class T>
+Array<T>::Array(const int sz)
+{
+	ptr = new T[sz];
+	size = sz;
+    memset (ptr, 0, sz*sizeof(T));
 }
 
 template <class T>
