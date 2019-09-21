@@ -4,7 +4,7 @@
 
 using namespace std;
 
-#define INIT_SIZE 10
+#define INIT_SIZE 0
 
 template <class T>
 Array<T>::Array()
@@ -82,5 +82,6 @@ T & Array<T>::operator[](int subscript)
 {
 	return ptr[subscript];
 }
+
 
 //falta leer del archivo/pantalla y guardarlo en el array

@@ -3,9 +3,6 @@
 
 #include <iostream>
 
-#ifndef _ARRAY_H_INCLUDED
-#define _ARRAY_H_INCLUDED
-
 template <class T>
 class Array
 {
