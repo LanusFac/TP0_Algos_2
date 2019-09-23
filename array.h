@@ -12,7 +12,7 @@ public:
     Array(const int);
 	~Array();
 
-	int getSize();
+	int getSize() const;
 	Array<T> & operator= (const Array<T> &);
 	bool operator== (const Array<T> &);
 	T & operator[](int);

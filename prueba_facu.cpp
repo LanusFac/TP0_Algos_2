@@ -1,29 +1,31 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <math.h>
 #include "complejo.cc"
 #include "array.cpp"
+#include "dft_facu.cpp"
 
 #define INPUT_TEXT "prueba.txt"
+#define OUTPUT_TEXT "oprueba.txt"
 #define CHOP_SIZE 1
+#define SALIDA oFile // flujo de salida. si es cout: por pantalla; si es oFile, es en archivo de texto. 
+#define SEPARADOR "--" // esto separa la entrada de la salida
 
 using namespace std;
 
+
 int main ()
+
+
 {
 	Array<complejo> arr_com;
 	complejo com;
 
-	ifstream file(INPUT_TEXT);
-	string str;
+	ifstream iFile(INPUT_TEXT);
+	ofstream oFile(OUTPUT_TEXT);
 
-
-	while(file >> com){
-
-		cout << "pito" << endl;
-
-		if(file.peek() == '\n')
-			cout << "hola" << endl;
+	while(iFile >> com){
 
 		Array <complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE); 
 		
@@ -36,15 +38,22 @@ int main ()
 		// delete[] arr_com_aux; con & compila pero tira seg.f
 
 	}
+	
+	iFile.close();
 
-	file.close();
+	Array<complejo> arrayComplejosTransformados;
+	arrayComplejosTransformados = _dft(arr_com);
 
 	for (int h = 0; h < arr_com.getSize(); h++) 
-		cout << arr_com[h] << endl;
-	cout << arr_com.getSize() << endl;
+		SALIDA << arr_com[h] << endl;
 
+	SALIDA << SEPARADOR << endl;
+
+	for (int h = 0; h < arrayComplejosTransformados.getSize(); h++) 
+		SALIDA << arrayComplejosTransformados[h] << endl;
+	
+
+	oFile.close();
 
 	return 0;
 }
-
-

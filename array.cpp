@@ -40,7 +40,7 @@ Array<T>::~Array()
 }
 
 template <class T>
-int Array<T>::getSize()
+int Array<T>::getSize() const
 {
 	return size;
 }

@@ -3,8 +3,8 @@
 
 #include <math.h>
 #include <iostream>
-#include <complejo.h>
-#include <array.h>
+#include "complejo.cc"
+#include "array.cpp"
 
 #define PI 3.142
 
