@@ -18,9 +18,14 @@ int main ()
 	string str;
 
 
-	while(file>>com){
+	while(file >> com){
 
-		Array<complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE); 
+		cout << "pito" << endl;
+
+		if(file.peek() == '\n')
+			cout << "hola" << endl;
+
+		Array <complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE); 
 		
 		for (int i = 0; i < arr_com.getSize(); i++)
 			arr_com_aux[i] = arr_com[i];
@@ -31,6 +36,8 @@ int main ()
 		// delete[] arr_com_aux; con & compila pero tira seg.f
 
 	}
+
+	file.close();
 
 	for (int h = 0; h < arr_com.getSize(); h++) 
 		cout << arr_com[h] << endl;
