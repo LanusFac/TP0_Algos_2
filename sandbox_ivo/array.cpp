@@ -106,7 +106,7 @@ istream & operator>>(std::istream &file, Array<T> &x)
 
 template <class T>
 ostream & operator<<(ostream &os, Array<T> &arr) { //para imprimir sobrecargo <<
-    for (int i = 0; i==arr.getSize()-1; i++)
+    for (int i = 0; i<arr.getSize(); i++)
         os<<arr[i];
     return os<<'\n';
 }

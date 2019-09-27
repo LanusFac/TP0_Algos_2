@@ -19,6 +19,7 @@ int main ()
 	string str;
 
 	input>>arr_com;
+	cout<<arr_com;
 	output<<arr_com;
 
 /*
@@ -45,12 +46,12 @@ int main ()
 	file.close();
 
 
-
+*/
 	
 	for (int h = 0; h < arr_com.getSize(); h++) 
 		cout << arr_com[h];
 	cout << arr_com.getSize() << endl;
-*/
+
 
 
 	return 0;
