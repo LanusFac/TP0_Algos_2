@@ -1,0 +1,22 @@
+CXXARGS  =
+CXXFLAGS = -P -I. -I\bc\include $(CXXARGS)
+LDFLAGS  = -L\bc\lib
+CXX      = bcc32
+
+test1.exe: test1.obj complejo.obj
+	$(CXX) $(LDFLAGS) -etest1.exe test1.obj complejo.obj
+
+test1.obj: test1.cc complejo.h
+	$(CXX) $(CXXFLAGS) -c -otest1.obj test1.cc
+
+complejo.obj: complejo.cc complejo.h
+	$(CXX) $(CXXFLAGS) -c -ocomplejo.obj complejo.cc
+
+test: test1.exe
+	@echo testing: test1.exe
+	@test1.exe <test1.in >test1.t
+	@comp test1.ref test1.t
+	@echo test ok.
+
+clean:
+	del *.o *.obj *.t core test*.exe

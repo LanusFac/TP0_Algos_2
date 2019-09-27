@@ -1,0 +1,22 @@
+CXXARGS  = -g -Wall
+CXXFLAGS = -I. $(CXXARGS)
+LDFLAGS  =
+CXX      = gpp
+
+test1.exe: test1.o complejo.o
+	$(CXX) $(LDFLAGS) -o test1.exe test1.o complejo.o
+
+test1.o: test1.cc complejo.h
+	$(CXX) $(CXXFLAGS) -c test1.cc
+
+complejo.o: complejo.cc complejo.h
+	$(CXX) $(CXXFLAGS) -c complejo.cc
+
+test: test1.exe
+	@echo testing: test1.exe
+	@test1.exe <test1.in >test1.t
+	@comp test1.ref test1.t
+	@echo test ok.
+
+clean:
+	del *.o *.t core test*.exe
