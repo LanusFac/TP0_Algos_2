@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
+#include <string>
 
 #include "cmdline.cc"
 
@@ -129,11 +130,11 @@ static void opt_method(string const &arg) {
 
 }
 
-int leer_cmdline (int argc, char * argv[], istream *file_in, ostream *file_out){
+int leer_cmdline (int argc, char * argv[], istream **file_in, ostream **file_out){
     cmdline cmdl(options);	// Objeto con parametro tipo option_t (struct) declarado globalmente.
 	cmdl.parse(argc, argv); // llama a opt_...
-    file_in = iss;
-    file_out = oss;
+    (*file_in) = iss;
+    (*file_out) = oss;
     return metodo;
 
 }
