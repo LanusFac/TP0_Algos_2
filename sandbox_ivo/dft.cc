@@ -2,7 +2,7 @@
 #include <math.h>
 #include "dft.h"
 
-Array<complejo> & _dft(const Array &x, int flag){
+Array<complejo> & _dft(Array <complejo> &x, int flag){
 
 	int N = x.getSize();
 	Array<complejo> *transf = new Array<complejo>(N);//constructor por tamano
@@ -21,10 +21,10 @@ Array<complejo> & _dft(const Array &x, int flag){
 	return *transf;
 }
 
-Array<complejo> &dft(const Array &x){
-	return _dft(const Array &x, 1);
+Array<complejo> &dft(Array<complejo> &x){
+	return _dft(Array <complejo> &x, 1);
 }
 
-Array<complejo> &idft(const Array &x){
-	return _dft(const Array &x, -1)/getSize(x); //conjuga W_nk
+Array<complejo> &idft(Array<complejo> &x){
+	return _dft(Array <complejo> &x, -1)/x.getSize(); //conjuga W_nk
 }

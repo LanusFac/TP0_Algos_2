@@ -40,7 +40,7 @@ Array<T>::~Array()
 }
 
 template <class T>
-int Array<T>::getSize() const
+int Array<T>::getSize()
 {
 	return size;
 }
@@ -82,6 +82,35 @@ T & Array<T>::operator[](int subscript)
 {
 	return ptr[subscript];
 }
+
+template <class T>
+std::istream & operator>>(std::istream &file, Array<T> &x)
+{
+	T data ;
+
+	while(file >> data){
+
+		Array <T> x_aux(x.getSize() + 1); 
+		
+		for (int i = 0; i < x.getSize(); i++)
+			x_aux[i] = x[i];
+
+		x_aux[x.getSize()] = data;
+
+		x = x_aux;
+	}
+
+	return file;
+}
+
+
+template <class T>
+std::ostream & operator<<(std::ostream &os, Array<T> &arr) { //para imprimir sobrecargo <<
+    for (int i = 0; i<arr.getSize(); i++)
+        os<<arr[i];
+    return os<<'\n';
+}
+
 
 
 //falta leer del archivo/pantalla y guardarlo en el array

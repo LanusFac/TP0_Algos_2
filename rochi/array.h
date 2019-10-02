@@ -12,10 +12,14 @@ public:
     Array(const int);
 	~Array();
 
-	int getSize() const;
+	int getSize();
 	Array<T> & operator= (const Array<T> &);
 	bool operator== (const Array<T> &);
 	T & operator[](int);
+
+template <class Y>	friend std::istream & operator>>(std::istream &file, Array<Y> &x);
+
+template <class Y> friend std::ostream & operator<<(std::ostream &os, Array<Y> &arr);
 
 private:
 	int size;
