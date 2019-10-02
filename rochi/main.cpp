@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
     ifstream iFile;
     ofstream oFile;
 
-    int metodo_elegido = leer_cmdline (argc, *argv, &iFile, &oFile);
+    int metodo_elegido = leer_cmdline (argc, argv, &iFile, &oFile);
 
     while(iFile >> com){ //inicializo array de complejos
 

@@ -3,6 +3,7 @@
 #include <string>
 #include "complejo.cc"
 #include "array.cpp"
+#include "dft.cc"
 
 #define INPUT_TEXT "prueba.txt"
 #define CHOP_SIZE 1
@@ -19,7 +20,8 @@ int main ()
 	string str;
 
 	input>>arr_com;
-	cout<<arr_com<<endl;
+	cout<<dft(arr_com)<<endl;
+	cout<<idft(arr_com)<<endl;
 	output<<arr_com<<endl;
 
 	input.close();
