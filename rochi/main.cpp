@@ -1,7 +1,7 @@
-#include "complejo.h"
-#include "array.h"
-#include "dft_facu.h"
-#include "leer_cmdline.h"
+//#include "complejo.h"
+//#include "array.h"
+//#include "dft_facu.h"
+//#include "leer_cmdline.h"
 
 #include "complejo.cc"
 #include "array.cpp"
@@ -25,22 +25,31 @@ using namespace std;
 int main(int argc, char *argv[]) {
     Array <complejo> arr_com; //la que voy a transformar
     complejo com;
-    ifstream iFile;
-    ofstream oFile;
+    istream *iFile;
+    ostream *oFile;
 
     int metodo_elegido = leer_cmdline (argc, argv, &iFile, &oFile);
+    cout << metodo_elegido << endl;
 
-    while(iFile >> com){ //inicializo array de complejos
+    //iFile = (istream)(*iFilep);
+    //oFile = (ostream)(*oFilep);
 
-		Array <complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE);
+    string text;
+    getline(*iFile, text);
 
-		for (int i = 0; i < arr_com.getSize(); i++)
-			arr_com_aux[i] = arr_com[i];
+    cout << text <<endl;
 
-		arr_com_aux[arr_com.getSize()] = com;
+    while(*iFile >> com){ //inicializo array de complejos
 
-		arr_com = arr_com_aux;
-		// delete[] arr_com_aux; con & compila pero tira seg.f
+        Array <complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE);
+
+        for (int i = 0; i < arr_com.getSize(); i++)
+            arr_com_aux[i] = arr_com[i];
+
+        arr_com_aux[arr_com.getSize()] = com;
+
+        arr_com = arr_com_aux;
+        // delete[] arr_com_aux; con & compila pero tira seg.f
 
     }
 
@@ -53,13 +62,13 @@ int main(int argc, char *argv[]) {
         //arrayComplejosTransformados = _idft(arr_com); por ahora lo comento porque no tenemos idft
 
     for (int h = 0; h < arr_com.getSize(); h++)
-        oFile << arr_com[h] << endl;
+        (*oFile) << arr_com[h] << endl;
 
-    oFile << SEPARADOR << endl;
+    (*oFile) << SEPARADOR << endl;
 
 
     for (int h = 0; h < arrayComplejosTransformados.getSize(); h++)
-        oFile << arrayComplejosTransformados[h] << endl;
+        (*oFile) << arrayComplejosTransformados[h] << endl;
 
     return 0;
 
