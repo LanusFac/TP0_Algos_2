@@ -34,11 +34,6 @@ int main(int argc, char *argv[]) {
     //iFile = (istream)(*iFilep);
     //oFile = (ostream)(*oFilep);
 
-    string text;
-    getline(*iFile, text);
-
-    cout << text <<endl;
-
     while(*iFile >> com){ //inicializo array de complejos
 
         Array <complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE);
