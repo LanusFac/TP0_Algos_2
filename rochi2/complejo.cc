@@ -155,9 +155,9 @@ operator==(complejo const &x, complejo const &y)
 ostream &
 operator<<(ostream &os, const complejo &c)
 {
-	return os << "(" 
+	return os << "("
 	          << c.re_
-	          << ", " 
+	          << ", "
 	          << c.im_
 	          << ")";
 }
@@ -192,8 +192,11 @@ operator>>(istream &is, complejo &c)
 
 	if (good)
 		c.re_ = re, c.im_ = im;
-	if (bad)
+
+	if (bad){
 		is.clear(ios::badbit);
+		cerr << "Caracter invalido"
+	}
 
 	return is;
 }

@@ -146,16 +146,25 @@ std::istream & operator>>(std::istream &file, Array<T> &x)
 {
 	T data ;
 
-	while(file >> data){
+	while(file >> data){ //lee de a un complejo y ve que no haya error
 
-		Array <T> x_aux(x.getSize() + 1); 
-		
-		for (int i = 0; i < x.getSize(); i++)
-			x_aux[i] = x[i];
+		if(!file.fail()){
 
-		x_aux[x.getSize()] = data;
+			Array <T> x_aux(x.getSize() + 1);
 
-		x = x_aux;
+			for (int i = 0; i < x.getSize(); i++)
+				x_aux[i] = x[i];
+
+			x_aux[x.getSize()] = data;
+
+			x = x_aux;
+		}
+
+		else{
+			file.clear(ios::badbit);
+			cerr << "error al leer el vector";
+			return file;
+		}
 	}
 
 	return file;

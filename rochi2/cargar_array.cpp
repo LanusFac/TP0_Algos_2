@@ -3,20 +3,30 @@
 //devuelve NULL cuando se llega al final del archivo
 //si encuentra un error en un vector imprime msj y pasa al siguiente
 
- /* while(*iFile >> com){ //inicializo array de complejos
+#include <iostream>
+#include <fstream>
+#include <string>
 
-    Array <complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE);
-
-    for (int i = 0; i < arr_com.getSize(); i++)
-        arr_com_aux[i] = arr_com[i];
-
-    arr_com_aux[arr_com.getSize()] = com;
-
-    arr_com = arr_com_aux;
-    // delete[] arr_com_aux; con & compila pero tira seg.f
-
-}*/
+#include "complejo.cc"
+#include "array.cpp"
+#include "cargar_array.h"
 
 Array <complejo> cargar_array(istream iFile){
-    
+
+    while(getline(iFile, string s)){
+
+        fstream file_aux;
+        file_aux << s << '\n';
+
+        Array <complejo> arr_aux;
+        file_aux >> arr_aux;
+
+        if(file_aux.fail()){
+            continue;
+        }
+
+        return arr_aux;
+    }
+    return NULL;
+
 }
