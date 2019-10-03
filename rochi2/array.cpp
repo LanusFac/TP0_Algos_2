@@ -77,6 +77,64 @@ bool Array<T>::operator== (const Array<T> & initArray)
 	return true;
 }
 
+// Agregado por Facu
+
+template <class T>
+Array<T>& Array<T>::operator+(const Array<T> &initArray)
+{
+	Array<T> outArr = Array(size);
+
+	if(size == initArray.size)
+	{
+		for(int i = 0; i < size; i++)
+		{
+			outArr[i] = ptr[i] + initArray.ptr[i];
+		}
+	}
+
+	return outArr;
+}
+
+template <class T>
+Array<T>& Array<T>::operator+=(const Array<T> &initArray)
+{
+	if(size == initArray.size)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			ptr[i] = ptr[i] + initArray.ptr[i];
+		}
+	}
+
+	return *this;
+}
+
+template <class T>
+Array<T>& Array<T>::operator*(const T f)
+{
+	Array<T> outArr = Array(size);
+
+	for (int i = 0; i < size; i++)
+	{
+		outArr[i] = ptr[i] * f;
+	}
+
+	return outArr;
+}
+
+template <class T>
+Array<T>& Array<T>::operator*=(const T f)
+{
+	for (int i = 0; i < size; i++)
+	{
+		ptr[i] = ptr[i] * f;
+	}
+
+	return *this;
+}
+
+// termina agragado por Facu
+
 template <class T>
 T & Array<T>::operator[](int subscript)
 {
@@ -110,6 +168,7 @@ std::ostream & operator<<(std::ostream &os, Array<T> &arr) { //para imprimir sob
         os<<arr[i];
     return os<<'\n';
 }
+
 
 
 
