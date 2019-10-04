@@ -34,7 +34,7 @@ public:
 	Array<T>& operator+=(const Array<T> &initArray);
 	Array<T>& operator+(const Array<T> &initArray);
 	Array<T>& operator*=(const T f);
-	Array <T> cargar_array(std::istream &iFile);
+	void cargar_array(std::istream &iFile, Array<T>*);
 
 template <class Y>	friend std::istream & operator>>(std::istream &file, Array<Y> &x);
 
@@ -211,6 +211,10 @@ std::istream & operator>>(std::istream &file, Array<T> &x)
 }
 
 
+
+
+
+
 template <class T>
 std::ostream & operator<<(std::ostream &os, Array<T> &arr) { //para imprimir sobrecargo <<
     for (int i = 0; i<arr.getSize(); i++)
@@ -218,27 +222,63 @@ std::ostream & operator<<(std::ostream &os, Array<T> &arr) { //para imprimir sob
     return os<<'\n';
 }
 
+
 template <class T>
-Array <T> Array<T>::cargar_array(std::istream &iFile){
+std::fstream & operator>>(std::fstream &file, Array<T> &x)
+{
+	T data ;
+
+	while(file >> data){ //lee de a un complejo y ve que no haya error
+
+		if(!file.fail()){
+
+			Array <T> x_aux(x.getSize() + 1);
+
+			for (int i = 0; i < x.getSize(); i++)
+				x_aux[i] = x[i];
+
+			x_aux[x.getSize()] = data;
+
+			x = x_aux;
+		}
+
+		else{
+			file.clear(ios::badbit);
+			cerr << "error al leer el vector";
+			return file;
+		}
+	}
+
+	return file;
+}
+
+
+
+
+template <class T>
+void
+Array<T>::cargar_array(std::istream &iFile, Array<T> *arr){
 
 	string s;
 
-    while(getline(iFile, s)){
+    getline(iFile, s);
 
-        fstream file_aux;
-        file_aux << s << '\n';
+	    fstream file_aux;
+	    file_aux << s << '\n';
 
-        Array <T> arr_aux;
-        file_aux >> arr_aux;
+		cout << 8 << '\n';
 
-        if(file_aux.fail()){
-            continue;
-        }
+		Array<T> arr_prueba;
 
-        return arr_aux;
-    }
-    //return NULL;
+	    file_aux >> arr_prueba;
 
+		for (int h = 0; h < arr_prueba.getSize(); h++)
+			cout << arr[h] << endl;
+
+	    if(file_aux.fail()){
+	       // continue;
+	    }
+		//break;
 }
 
 #endif

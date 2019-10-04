@@ -7,5 +7,5 @@
 #include "complejo.h"
 #include "array.h"
 
-Array<T> cargar_array(istream Ifile);
+void cargar_array(istream &Ifile, Array<complejo>*);
 #endif

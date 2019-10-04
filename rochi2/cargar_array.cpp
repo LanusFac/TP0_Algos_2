@@ -10,23 +10,21 @@
 //#include "complejo.cc"
 //#include "array.cpp"
 #include "cargar_array.h"
+#include "array.h"
 
-Array <T> cargar_array(istream iFile){
+void cargar_array(istream &iFile, Array<complejo> *arr){
 
-    while(getline(iFile, string s)){
+    string s;
+
+    while(getline(iFile, s)){
 
         fstream file_aux;
         file_aux << s << '\n';
 
-        Array <T> arr_aux;
-        file_aux >> arr_aux;
+        file_aux >> (*arr);
 
         if(file_aux.fail()){
             continue;
         }
-
-        return arr_aux;
     }
-    return NULL;
-
 }

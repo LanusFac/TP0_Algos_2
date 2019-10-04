@@ -33,9 +33,12 @@ int main(int argc, char *argv[]) {
 
     Array <complejo> arr_com;
 
-        while((*iFile).eof()){
+        //while((*iFile).eof()){
 
-            arr_com.cargar_array (*iFile);
+            arr_com.cargar_array (*iFile, &arr_com);
+
+            for (int h = 0; h < arr_com.getSize(); h++)
+                (*oFile) << arr_com[h] << endl;
 
             Array<complejo> arrayComplejosTransformados;
 
@@ -45,9 +48,6 @@ int main(int argc, char *argv[]) {
             //else if (metodo_elegido == -1)
                 //arrayComplejosTransformados = _idft(arr_com); por ahora lo comento porque no tenemos idft
 
-            for (int h = 0; h < arr_com.getSize(); h++)
-                (*oFile) << arr_com[h] << endl;
-
             (*oFile) << SEPARADOR << endl;
 
 
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
                 (*oFile) << arrayComplejosTransformados[h] << endl;
 
             (*oFile) << "End of Convertion" << endl;
-        }
+        //}
     return 0;
 
 }
