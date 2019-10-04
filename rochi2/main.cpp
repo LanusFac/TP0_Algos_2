@@ -1,12 +1,13 @@
-//#include "complejo.h"
-//#include "array.h"
-//#include "dft_facu.h"
-//#include "leer_cmdline.h"
+#include "complejo.h"
+#include "array.h"
+#include "dft_facu.h"
+#include "leer_cmdline.h"
+//#include "cargar_array.h"
 
-#include "complejo.cc"
-#include "array.cpp"
+/* #include "array.cpp"
 #include "dft_facu.cpp"
 #include "leer_cmdline.cpp"
+#include "cargar_array.cpp"*/
 
 #include <iostream>
 #include <iomanip>
@@ -30,27 +31,31 @@ int main(int argc, char *argv[]) {
     int metodo_elegido = leer_cmdline (argc, argv, &iFile, &oFile);
     cout << metodo_elegido << endl;
 
-    while((Array <complejo> arr_com = cargar_array (*iFile))){
+    Array <complejo> arr_com;
 
-        Array<complejo> arrayComplejosTransformados;
+        while((*iFile).eof()){
 
-        if (metodo_elegido == 1)
-            arrayComplejosTransformados = _dft(arr_com);
+            arr_com.cargar_array (*iFile);
 
-        //else if (metodo_elegido == -1)
-            //arrayComplejosTransformados = _idft(arr_com); por ahora lo comento porque no tenemos idft
+            Array<complejo> arrayComplejosTransformados;
 
-        for (int h = 0; h < arr_com.getSize(); h++)
-            (*oFile) << arr_com[h] << endl;
+            if (metodo_elegido == 1)
+                arrayComplejosTransformados = _dft(arr_com);
 
-        (*oFile) << SEPARADOR << endl;
+            //else if (metodo_elegido == -1)
+                //arrayComplejosTransformados = _idft(arr_com); por ahora lo comento porque no tenemos idft
+
+            for (int h = 0; h < arr_com.getSize(); h++)
+                (*oFile) << arr_com[h] << endl;
+
+            (*oFile) << SEPARADOR << endl;
 
 
-        for (int h = 0; h < arrayComplejosTransformados.getSize(); h++)
-            (*oFile) << arrayComplejosTransformados[h] << endl;
+            for (int h = 0; h < arrayComplejosTransformados.getSize(); h++)
+                (*oFile) << arrayComplejosTransformados[h] << endl;
 
-        (*oFile) << "End of Convertion" << endl;
-    }
+            (*oFile) << "End of Convertion" << endl;
+        }
     return 0;
 
 }
