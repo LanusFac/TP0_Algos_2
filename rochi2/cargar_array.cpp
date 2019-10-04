@@ -7,18 +7,18 @@
 #include <fstream>
 #include <string>
 
-#include "complejo.cc"
-#include "array.cpp"
+//#include "complejo.cc"
+//#include "array.cpp"
 #include "cargar_array.h"
 
-Array <complejo> cargar_array(istream iFile){
+Array <T> cargar_array(istream iFile){
 
     while(getline(iFile, string s)){
 
         fstream file_aux;
         file_aux << s << '\n';
 
-        Array <complejo> arr_aux;
+        Array <T> arr_aux;
         file_aux >> arr_aux;
 
         if(file_aux.fail()){

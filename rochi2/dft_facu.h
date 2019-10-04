@@ -2,6 +2,8 @@
 #define _DFT_H_INCLUDED
 
 #include <iostream>
+#include "array.h"
+#include "complejo.h"
 
 #define PI 3.142
 

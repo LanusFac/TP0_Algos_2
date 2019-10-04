@@ -4,8 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "complejo.cc"
-#include "array.cpp"
+#include "complejo.h"
+#include "array.h"
 
-Array <complejo> cargar_array (istream);
+Array<T> cargar_array(istream Ifile);
 #endif

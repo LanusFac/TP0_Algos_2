@@ -10,6 +10,6 @@
 
 using namespace std;
 
-int leer_cmdline (int, char *, istream**, ostream**);
+int leer_cmdline (int, char **, istream**, ostream**);
 
 #endif

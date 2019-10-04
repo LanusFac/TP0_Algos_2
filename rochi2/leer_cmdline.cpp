@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <string>
 
-#include "cmdline.cc"
+#include "cmdline.h"
 
 using namespace std;
 
