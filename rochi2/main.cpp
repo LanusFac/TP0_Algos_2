@@ -33,35 +33,31 @@ int main(int argc, char *argv[]) {
 
     Array <complejo> arr_com;
 
-        //while((*iFile).eof()){
+    while(!(*iFile).eof()){
 
-            arr_com.cargar_array (*iFile, &arr_com);
+        arr_com.cargar_array (*iFile, &arr_com);
 
-            for (int h = 0; h < arr_com.getSize(); h++)
-                (*oFile) << arr_com[h] << endl;
+        (*oFile) << "input" << endl;
 
-            Array<complejo> arrayComplejosTransformados;
+        for (int h = 0; h < arr_com.getSize(); h++)
+            (*oFile) << arr_com[h] << endl;
 
-            if (metodo_elegido == 1)
-                arrayComplejosTransformados = _dft(arr_com);
+        Array<complejo> arrayComplejosTransformados;
 
-            //else if (metodo_elegido == -1)
-                //arrayComplejosTransformados = _idft(arr_com); por ahora lo comento porque no tenemos idft
+        if (metodo_elegido == 1)
+            arrayComplejosTransformados = _dft(arr_com);
 
-            (*oFile) << SEPARADOR << endl;
+        //else if (metodo_elegido == -1)
+            //arrayComplejosTransformados = _idft(arr_com); por ahora lo comento porque no tenemos idft
 
+        (*oFile) << SEPARADOR << endl;
 
-            for (int h = 0; h < arrayComplejosTransformados.getSize(); h++)
-                (*oFile) << arrayComplejosTransformados[h] << endl;
+        (*oFile) << "output" << endl;
+        for (int h = 0; h < arrayComplejosTransformados.getSize(); h++)
+            (*oFile) << arrayComplejosTransformados[h] << endl;
+    }
 
-            (*oFile) << "End of Convertion" << endl;
-        //}
+    (*oFile) << "End of Convertion" << endl;
     return 0;
 
 }
-
-//main de prueba:
-//hacer dft/idft
-//imprimir
-//hacer idft/idft
-//imprimir para verificar que sean iguales salvo errores numericos

@@ -47,7 +47,7 @@ private:
 
 
 template <class T>
-Array<T>::Array()
+Array<T>::Array() //si podemos mejor no usar memset
 {
 	ptr = new T[INIT_SIZE];
 	size = INIT_SIZE;
@@ -259,26 +259,18 @@ template <class T>
 void
 Array<T>::cargar_array(std::istream &iFile, Array<T> *arr){
 
+	(*arr) = 0;
 	string s;
 
-    getline(iFile, s);
+    while(getline(iFile, s)){
+		std::stringstream ss(s);
+		ss >> *arr;
+		ss.str(std::string());
 
-	    fstream file_aux;
-	    file_aux << s << '\n';
-
-		cout << 8 << '\n';
-
-		Array<T> arr_prueba;
-
-	    file_aux >> arr_prueba;
-
-		for (int h = 0; h < arr_prueba.getSize(); h++)
-			cout << arr[h] << endl;
-
-	    if(file_aux.fail()){
-	       // continue;
-	    }
-		//break;
+		if(iFile.fail()){
+		    continue;
+		}
+		break;
+	}
 }
-
 #endif
