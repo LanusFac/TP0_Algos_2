@@ -37,6 +37,9 @@ int main(int argc, char *argv[]) {
 
         arr_com.cargar_array (*iFile, &arr_com);
 
+        if ((*iFile).eof())
+            break;
+
         (*oFile) << "input" << endl;
 
         for (int h = 0; h < arr_com.getSize(); h++)
