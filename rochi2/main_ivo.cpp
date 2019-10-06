@@ -1,12 +1,13 @@
 #include "complejo.h"
 #include "array.h"
 #include "dft_facu.h"
-//#include "leer_cmdline.h"
+#include "leer_cmdline.h"
+//#include "cargar_array.h"
 
-#include "complejo.cc"
-#include "array.cpp"
-#include "dft.cc"
-//#include "leer_cmdline.cpp"
+/* #include "array.cpp"
+#include "dft_facu.cpp"
+#include "leer_cmdline.cpp"
+#include "cargar_array.cpp"*/
 
 #include <iostream>
 #include <iomanip>
@@ -17,6 +18,9 @@
 #include <fstream>
 #include <math.h>
 
+#include "complejo.cc"
+#include "array.cpp"
+#include "dft.cc"
 using namespace std;
 
 #define CHOP_SIZE 1
@@ -36,9 +40,9 @@ int main(int argc, char *argv[]) {
 
     Array<complejo> arrayComplejosAntiTransformados;
 
-        arrayComplejosTransformados = dft(arr_com);
+    arrayComplejosTransformados = dft(arr_com);
 
-        arrayComplejosAntiTransformados = idft(arr_com);
+    arrayComplejosAntiTransformados = idft(arr_com);
 
     oFile<<"input:  "<<arr_com<<endl;
     oFile<<"output: "<<arrayComplejosTransformados<<endl;
