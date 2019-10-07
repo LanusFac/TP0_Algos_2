@@ -27,9 +27,9 @@ int main(int argc, char *argv[]) {
     complejo com;
     istream *iFile;
     ostream *oFile;
+    char c;
 
     int metodo_elegido = leer_cmdline (argc, argv, &iFile, &oFile);
-    cout << metodo_elegido << endl;
 
     //iFile = (istream)(*iFilep);
     //oFile = (ostream)(*oFilep);
@@ -44,6 +44,11 @@ int main(int argc, char *argv[]) {
         arr_com_aux[arr_com.getSize()] = com;
 
         arr_com = arr_com_aux;
+
+        c = iFile -> peek();
+        if(c == '\n')
+            cout << "barra n" << endl;
+
         // delete[] arr_com_aux; con & compila pero tira seg.f
 
     }
@@ -54,13 +59,13 @@ int main(int argc, char *argv[]) {
         arrayComplejosTransformados = _dft(arr_com);
 
     else if (metodo_elegido == -1)
-        //arrayComplejosTransformados = _idft(arr_com); por ahora lo comento porque no tenemos idft
-
+        arrayComplejosTransformados = _idft(arr_com);
+/*
     for (int h = 0; h < arr_com.getSize(); h++)
         (*oFile) << arr_com[h] << endl;
 
     (*oFile) << SEPARADOR << endl;
-
+*/
 
     for (int h = 0; h < arrayComplejosTransformados.getSize(); h++)
         (*oFile) << arrayComplejosTransformados[h] << endl;

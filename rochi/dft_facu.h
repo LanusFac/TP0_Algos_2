@@ -3,8 +3,10 @@
 
 #include <iostream>
 
-#define PI 3.142
+#define PI 3.14159265358979323846264338328
+
 
 Array<complejo> & _dft(Array<complejo> &x);
+Array<complejo> & _idft(Array<complejo> &x);
 
 #endif
