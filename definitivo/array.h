@@ -225,8 +225,13 @@ Array<T>::cargar_array(std::istream &iFile, Array<T> *arr, std::ostream &oFile){
     while(getline(iFile, s)){
 		std::stringstream ss(s);
 		ss >> (*arr);
+
+		cout << (*arr) << endl;
+
 		if(ss.bad()){
+			(*arr) = 0;
 			oFile << "reading error" << endl;
+			ss.str(std::string());
 		    continue;
 		}
 		ss.str(std::string());
