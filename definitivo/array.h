@@ -189,7 +189,7 @@ std::istream & operator>>(std::istream &file, Array<T> &x)
 	while(!(file.eof())){
 		file >> data; //lee de a un complejo y ve que no haya error
 
-		if(file.bad()){
+		if(file.fail()){
 			return file;
 		}
 
@@ -224,9 +224,9 @@ Array<T>::cargar_array(std::istream &iFile, Array<T> *arr, std::ostream &oFile){
 
     while(getline(iFile, s)){
 		std::stringstream ss(s);
-		ss >> (*arr);
 
-		cout << (*arr) << endl;
+
+		ss >> (*arr);
 
 		if(ss.bad()){
 			(*arr) = 0;
