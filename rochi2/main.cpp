@@ -1,6 +1,6 @@
 #include "complejo.h"
 #include "array.h"
-#include "dft_facu.h"
+#include "dft.h"
 #include "leer_cmdline.h"
 //#include "cargar_array.h"
 
@@ -27,9 +27,18 @@ int main(int argc, char *argv[]) {
     complejo com;
     istream *iFile;
     ostream *oFile;
+    Array<complejo> & (*transformada)(Array<complejo> &x);
+
+
 
     int metodo_elegido = leer_cmdline (argc, argv, &iFile, &oFile);
     cout << metodo_elegido << endl;
+
+        if (metodo_elegido == 1)
+            transformada = dft;
+        else if (metodo_elegido == -1)
+            transformada = idft; 
+
 
     Array <complejo> arr_com;
 
@@ -42,22 +51,17 @@ int main(int argc, char *argv[]) {
 
         (*oFile) << "input" << endl;
 
-        for (int h = 0; h < arr_com.getSize(); h++)
-            (*oFile) << arr_com[h] << endl;
+        (*oFile)<<arr_com<<endl;
 
         Array<complejo> arrayComplejosTransformados;
 
-        if (metodo_elegido == 1)
-            arrayComplejosTransformados = _dft(arr_com);
-
-        //else if (metodo_elegido == -1)
-            //arrayComplejosTransformados = _idft(arr_com); por ahora lo comento porque no tenemos idft
+        arrayComplejosTransformados=transformada(arr_com);
 
         (*oFile) << SEPARADOR << endl;
 
         (*oFile) << "output" << endl;
-        for (int h = 0; h < arrayComplejosTransformados.getSize(); h++)
-            (*oFile) << arrayComplejosTransformados[h] << endl;
+        
+        (*oFile) << arrayComplejosTransformados<<endl;
     }
 
     (*oFile) << "End of Convertion" << endl;

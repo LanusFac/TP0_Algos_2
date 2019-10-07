@@ -8,9 +8,9 @@
 
 #define PI 3.142
 
-Array<complejo> * _dft( Array &x, int flag);
-Array<complejo> &  dft( Array &x);
-Array<complejo> & idft( Array &x);
+Array<complejo> * _dft( Array<complejo> &x, int flag);
+Array<complejo> &  dft( Array<complejo> &x);
+Array<complejo> & idft( Array<complejo> &x);
 
 
 #endif
