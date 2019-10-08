@@ -3,11 +3,10 @@
 #include "dft.h"
 
 Array<complejo> & _dft(Array <complejo> &x, int flag){ //flag=1 	dft
-													   //flag=-1 idft	
+													   //flag=-1 idft
 
 	int N = x.getSize();
 	Array<complejo> *transf = new Array<complejo>(N);//constructor por tamano
-	cerr<<"adentro de dft"<<transf<<endl;
 	Array<complejo> w_nk (N);
 	double arg;
 	complejo aux;
@@ -29,7 +28,7 @@ Array<complejo> &dft(Array<complejo> &x){
 }
 
 Array<complejo> &idft(Array<complejo> &x){
-	Array<complejo>& transf=_dft(x, -1);	 
+	Array<complejo>& transf=_dft(x, -1);
 
 	transf*=(1.0/x.getSize()); //conjuga W_nk
 	return transf;
