@@ -215,7 +215,7 @@ template <class T>
 std::ostream & operator<<(std::ostream &os, Array<T> &arr) { //para imprimir sobrecargo <<
     for (int i = 0; i<arr.getSize(); i++)
         os<<arr[i];
-    return os<<'\n';
+    return os;
 }
 
 template <class T>
