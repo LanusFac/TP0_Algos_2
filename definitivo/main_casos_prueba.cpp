@@ -2,6 +2,7 @@
 #include "array.h"
 #include "dft.h"
 #include "leer_cmdline.h"
+#include "calcular_error.h"
 
 #include <iostream>
 #include <iomanip>
@@ -20,7 +21,8 @@ int main(int argc, char *argv[]) {
     complejo com;
     istream *iFile;
     ostream *oFile;
-    Array<complejo>& (*transformada)(Array<complejo> &x);
+    ifstream iFileReferencia("referencia.txt");
+    Array<complejo> & (*transformada)(Array<complejo> &x);
 
     int metodo_elegido = leer_cmdline (argc, argv, &iFile, &oFile);
 
@@ -34,15 +36,25 @@ int main(int argc, char *argv[]) {
 
     while(!(*iFile).eof()){
 
-        arr_com.cargar_array (*iFile, &arr_com, *oFile);
+        arr_com.cargar_array(*iFile, &arr_com, *oFile);
+  
+        Array<complejo> arrayComplejosTransformados;
 
-        /*if ((*iFile).eof())
-            break;
-*/
-        Array<complejo>& arrayComplejosTransformados=transformada(arr_com);
-        (*oFile) << arrayComplejosTransformados<<endl;
-        delete &arrayComplejosTransformados;
+        arrayComplejosTransformados = transformada(arr_com);
+        (*oFile) << arrayComplejosTransformados;
+
+        arr_com.cargar_array(iFileReferencia, &arr_com, *oFile);
+
+        if(calculador_error(arrayComplejosTransformados, arr_com) == true)
+        {
+            (*oFile) << "error chico" << endl;
+        }
+
+        else{
+            (*oFile) << "error grande" << endl;
+        }
+
+
     }
     return 0;
-
 }

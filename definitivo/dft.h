@@ -8,7 +8,7 @@
 
 #define PI 3.14159265359
 
-Array<complejo> * _dft( Array<complejo> &x, int flag);
+Array<complejo> & _dft( Array<complejo> &x, int flag);
 Array<complejo> &  dft( Array<complejo> &x);
 Array<complejo> & idft( Array<complejo> &x);
 

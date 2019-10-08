@@ -11,6 +11,9 @@
 #include <math.h>
 #include <cstring>
 
+#include <typeinfo>
+
+
 #define INIT_SIZE 0
 
 using namespace std;
@@ -196,11 +199,11 @@ std::istream & operator>>(std::istream &file, Array<T> &x)
 		else{
 			Array <T> x_aux(x.getSize() + 1);
 
-			for (int i = 0; i < x.getSize(); i++)
+			for (int i = 0; i < x.getSize(); i++){
 				x_aux[i] = x[i];
+			}
 
 			x_aux[x.getSize()] = data;
-
 			x = x_aux;
 		}
 	}
@@ -224,7 +227,6 @@ Array<T>::cargar_array(std::istream &iFile, Array<T> *arr, std::ostream &oFile){
 
     while(getline(iFile, s)){
 		std::stringstream ss(s);
-
 
 		ss >> (*arr);
 
