@@ -7,7 +7,7 @@ all: make_prueba clean
 
 #make_prueba: compila todo el programa a partir de los archivos objeto de todos los archivos .c
 make_prueba: main_casos_prueba.o calcular_error.o cmdline.o complejo.o dft.o leer_cmdline.o
-	$(CC) $(CFLAGS) -o main_casos_prueba.o -c main_casos_prueba.cpp
+	$(CC) $(CFLAGS) -o prueba main_casos_prueba.o calcular_error.o cmdline.o complejo.o dft.o leer_cmdline.o
 
 main_casos_prueba.o: main_casos_prueba.cpp complejo.h array.h dft.h leer_cmdline.h calcular_error.h
 	$(CC) $(CFLAGS) -o main_casos_prueba.o -c main_casos_prueba.cpp
