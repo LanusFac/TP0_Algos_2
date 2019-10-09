@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
         ostream *errFile;
         fstream eF;
-        string arg = "errores2.txt";
+        string arg = "errores.txt";
         eF.open(arg.c_str(), ios::out);
         errFile = &eF;
 
