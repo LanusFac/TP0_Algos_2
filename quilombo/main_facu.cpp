@@ -12,7 +12,7 @@
 #define CHOP_SIZE 1
 
 
-#define SALIDA oFile // flujo de salida. si es cout: por pantalla; si es oFile, es en archivo de texto. 
+#define SALIDA oFile // flujo de salida. si es cout: por pantalla; si es oFile, es en archivo de texto.
 #define SEPARADOR "--" // esto separa la entrada de la salida
 
 using namespace std;
@@ -46,36 +46,36 @@ int main (int argc, char const *argv[])
 
 	while(iFile >> com){
 
-		Array <complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE); 
-		
+		Array <complejo> arr_com_aux(arr_com.getSize() + CHOP_SIZE);
+
 		for (int i = 0; i < arr_com.getSize(); i++)
 			arr_com_aux[i] = arr_com[i];
 
 		arr_com_aux[arr_com.getSize()] = com;
 
 		arr_com = arr_com_aux;
-		// delete[] arr_com_aux; con & compila pero tira seg.f
+
 	}
 
 	ofstream oFile(argv[OUTPUT_TEXT_FILE_POS]);
 
 	iFile.close();
-	
+
 	Array<complejo> arrayComplejosTransformados;
 
 	if (!strcmp(argv[METHOD_OPTION_POS], METHOD_DFT))
 		arrayComplejosTransformados = _dft(arr_com);
 
 
-	for (int h = 0; h < arr_com.getSize(); h++) 
+	for (int h = 0; h < arr_com.getSize(); h++)
 		SALIDA << arr_com[h] << endl;
 
 	SALIDA << SEPARADOR << endl;
 
 
-	for (int h = 0; h < arrayComplejosTransformados.getSize(); h++) 
+	for (int h = 0; h < arrayComplejosTransformados.getSize(); h++)
 		SALIDA << arrayComplejosTransformados[h] << endl;
-	
+
 
 	oFile.close();
 
@@ -111,4 +111,3 @@ status_t validar_argumentos(int argc, char const *argv[])
 
 	return OK;
 }
-

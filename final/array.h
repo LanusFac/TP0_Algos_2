@@ -11,6 +11,9 @@
 #include <math.h>
 #include <cstring>
 
+#include <typeinfo>
+
+
 #define INIT_SIZE 0
 
 using namespace std;
@@ -34,7 +37,7 @@ public:
 	Array<T>& operator+=(const Array<T> &initArray);
 	Array<T>& operator+(const Array<T> &initArray);
 	Array<T>& operator*=(const T f);
-	void cargar_array(std::istream &iFile, Array<T>*);
+	void cargar_array(std::istream &iFile, Array<T>*, std::ostream &oFile);
 
 template <class Y>	friend std::istream & operator>>(std::istream &file, Array<Y> &x);
 
@@ -186,90 +189,53 @@ std::istream & operator>>(std::istream &file, Array<T> &x)
 {
 	T data ;
 
-	while(file >> data){ //lee de a un complejo y ve que no haya error
+	while(!(file.eof())){
+		file >> data; //lee de a un complejo y ve que no haya error
 
-		if(!file.fail()){
-
-			Array <T> x_aux(x.getSize() + 1);
-
-			for (int i = 0; i < x.getSize(); i++)
-				x_aux[i] = x[i];
-
-			x_aux[x.getSize()] = data;
-
-			x = x_aux;
+		if(file.fail()){
+			return file;
 		}
 
 		else{
-			file.clear(ios::badbit);
-			cerr << "error al leer el vector";
-			return file;
+			Array <T> x_aux(x.getSize() + 1);
+
+			for (int i = 0; i < x.getSize(); i++){
+				x_aux[i] = x[i];
+			}
+
+			x_aux[x.getSize()] = data;
+			x = x_aux;
 		}
 	}
 
 	return file;
 }
-
-
-
-
-
 
 template <class T>
 std::ostream & operator<<(std::ostream &os, Array<T> &arr) { //para imprimir sobrecargo <<
     for (int i = 0; i<arr.getSize(); i++)
         os<<arr[i];
-    return os<<'\n';
+    return os;
 }
-
-
-template <class T>
-std::fstream & operator>>(std::fstream &file, Array<T> &x)
-{
-	T data ;
-
-	while(file >> data){ //lee de a un complejo y ve que no haya error
-
-		if(!file.fail()){
-
-			Array <T> x_aux(x.getSize() + 1);
-
-			for (int i = 0; i < x.getSize(); i++)
-				x_aux[i] = x[i];
-
-			x_aux[x.getSize()] = data;
-
-			x = x_aux;
-		}
-
-		else{
-			file.clear(ios::badbit);
-			cerr << "error al leer el vector";
-			return file;
-		}
-	}
-
-	return file;
-}
-
-
-
 
 template <class T>
 void
-Array<T>::cargar_array(std::istream &iFile, Array<T> *arr){
+Array<T>::cargar_array(std::istream &iFile, Array<T> *arr, std::ostream &oFile){
 
 	(*arr) = 0;
 	string s;
 
     while(getline(iFile, s)){
 		std::stringstream ss(s);
-		ss >> *arr;
-		ss.str(std::string());
 
-		if(iFile.fail()){
+		ss >> (*arr);
+		if(ss.bad()){
+			(*arr) = 0;
+			oFile << "reading error" << endl;
+			ss.str(std::string());
 		    continue;
 		}
+		ss.str(std::string());
 		break;
 	}
 }

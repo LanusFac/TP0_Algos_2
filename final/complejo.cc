@@ -195,7 +195,6 @@ operator>>(istream &is, complejo &c)
 
 	if (bad){
 		is.clear(ios::badbit);
-		cerr << "Invalid character" << endl;
 	}
 
 	return is;
