@@ -3,11 +3,11 @@ CFLAGS = -Wall -pedantic
 CC = g++
 
 # all: compila todo el programa y elimina los archivos objeto
-all: make_prueba clean
+all: make_tp1 clean
 
-#make_prueba: compila todo el programa a partir de los archivos objeto de todos los archivos .c
-make_prueba: main.o calcular_error.o cmdline.o complejo.o dft.o leer_cmdline.o
-	$(CC) $(CFLAGS) -o prueba main.o calcular_error.o cmdline.o complejo.o dft.o leer_cmdline.o
+#make_tp1: compila todo el programa a partir de los archivos objeto de todos los archivos .c
+make_tp1: main.o calcular_error.o cmdline.o complejo.o dft.o leer_cmdline.o
+	$(CC) $(CFLAGS) -o tp1 main.o calcular_error.o cmdline.o complejo.o dft.o leer_cmdline.o
 
 main_casos_prueba.o: main.cpp complejo.h array.h dft.h leer_cmdline.h calcular_error.h
 	$(CC) $(CFLAGS) -o main.o -c main.cpp
