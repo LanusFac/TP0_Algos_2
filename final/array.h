@@ -50,7 +50,7 @@ private:
 
 
 template <class T>
-Array<T>::Array() //si podemos mejor no usar memset
+Array<T>::Array() 
 {
 	ptr = new T[INIT_SIZE];
 	size = INIT_SIZE;
@@ -120,8 +120,6 @@ bool Array<T>::operator== (const Array<T> & initArray)
 	return true;
 }
 
-// Agregado por Facu
-
 template <class T>
 Array<T>& Array<T>::operator+(const Array<T> &initArray)
 {
@@ -176,8 +174,6 @@ Array<T>& Array<T>::operator*=(const T f)
 	return *this;
 }
 
-// termina agragado por Facu
-
 template <class T>
 T & Array<T>::operator[](int subscript)
 {
@@ -185,7 +181,7 @@ T & Array<T>::operator[](int subscript)
 }
 
 template <class T>
-std::istream & operator>>(std::istream &file, Array<T> &x)
+std::istream & operator>>(std::istream &file, Array<T> &x)//lee todos los valores de un stream
 {
 	T data ;
 
@@ -212,7 +208,7 @@ std::istream & operator>>(std::istream &file, Array<T> &x)
 }
 
 template <class T>
-std::ostream & operator<<(std::ostream &os, Array<T> &arr) { //para imprimir sobrecargo <<
+std::ostream & operator<<(std::ostream &os, Array<T> &arr) { 
     for (int i = 0; i<arr.getSize(); i++)
         os<<arr[i];
     return os;
@@ -220,7 +216,7 @@ std::ostream & operator<<(std::ostream &os, Array<T> &arr) { //para imprimir sob
 
 template <class T>
 void
-Array<T>::cargar_array(std::istream &iFile, Array<T> *arr, std::ostream &oFile){
+Array<T>::cargar_array(std::istream &iFile, Array<T> *arr, std::ostream &oFile){ //lee de a una linea
 
 	(*arr) = 0;
 	string s;

@@ -2,8 +2,9 @@
 #include <math.h>
 #include "dft.h"
 
-Array<complejo> & _dft(Array <complejo> &x, int flag){ //flag=1 	dft
-													   //flag=-1 idft
+Array<complejo> & _dft(Array <complejo> &x, int flag){ //funcion de uso interno/implementacion, no para el usuario
+//recibe un array de complejos y un flag
+//realiza dft (1) o idft(-1) según el flag.
 
 	int N = x.getSize();
 	Array<complejo> *transf = new Array<complejo>(N);//constructor por tamano
@@ -30,6 +31,6 @@ Array<complejo> &dft(Array<complejo> &x){
 Array<complejo> &idft(Array<complejo> &x){
 	Array<complejo>& transf=_dft(x, -1);
 
-	transf*=(1.0/x.getSize()); //conjuga W_nk
+	transf*=(1.0/x.getSize()); 
 	return transf;
 }

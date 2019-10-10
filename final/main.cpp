@@ -14,8 +14,6 @@
 
 using namespace std;
 
-#define CHOP_SIZE 1
-
 int main(int argc, char *argv[]) {
     complejo com;
     istream *iFile;
